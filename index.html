@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Status Lampu</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .status { margin: 20px; font-size: 20px; }
+        .on { color: green; }
+        .off { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Monitoring Status Lampu</h1>
+    <div class="status" id="lamp-status">Loading...</div>
+    <script>
+        async function fetchLampStatus() {
+            const response = await fetch('URL_ANTARES_API'); // Ganti dengan URL Antares
+            const data = await response.json();
+            const statusElement = document.getElementById('lamp-status');
+            statusElement.innerText = data.status; // Sesuaikan dengan struktur data
+            statusElement.className = data.status === 'ON' ? 'status on' : 'status off';
+        }
+        setInterval(fetchLampStatus, 5000); // Mengupdate setiap 5 detik
+        fetchLampStatus(); // Panggil awal
+    </script>
+</body>
+</html>
