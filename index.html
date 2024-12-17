@@ -18,7 +18,8 @@
     <script>
         async function fetchLampStatus() {
             try {
-                const response = await fetch('https://platform.antares.id:8443/~/antares-cse/antares-id/Smart_light/pir', {
+                // Menggunakan proxy untuk menghindari masalah CORS
+                const response = await fetch('https://cors-anywhere.herokuapp.com/https://platform.antares.id:8443/~/antares-cse/antares-id/Smart_light/pir', {
                     method: 'GET',
                     headers: {
                         'X-M2M-Origin': '9c1caa3c43003ca0:5804b1294c9701bb', // Ganti dengan token autentikasi Anda
